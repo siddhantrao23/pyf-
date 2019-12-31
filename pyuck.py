@@ -1,4 +1,5 @@
 import sys
+import getch
 
 def execute(filename):
 	f = open(filename, "r")
@@ -25,10 +26,10 @@ def eval(code):
 			cells[cellptr] += 1 if cells[cellptr] < 255 else 0
 		elif command == '-':
 			cells[cellptr] -= 1 if cells[cellptr] > 0 else 255
-		elif command == '.':
-			sys.stdout.write(str(cells[cellptr])+'\n')
-		elif command == ',':
-			cells[cellptr] = int(sys.stdin.read(1))
+		elif command == ".":
+			sys.stdout.write(chr(cells[cellptr]))
+		elif command == ",":
+			cells[cellptr] = ord(getch.getch())
 		elif command == '[':
 			if cells[cellptr] == 0:
 				codeptr = bracemap[codeptr]
